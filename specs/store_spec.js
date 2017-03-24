@@ -3,12 +3,14 @@ var Record = require('../record');
 var assert = require('assert');
 var impulse;
 var angst;
+var tweeter;
 
 describe('store', function(){
 
   beforeEach(function(){
     impulse = new Store("Impulse", "Hamilton");
-    angst = new Record("Angst In My Pants", "Sparks", 10);
+    angst = new Record("Sparks", "Angst In My Pants", 10);
+    tweeter = new Record("Sparks", "A Tweeter in Woofer's Clothing", 10);
   });
 
   it('has a name, city and inventory', function(){
@@ -26,15 +28,44 @@ describe('store', function(){
     assert.equal(1, impulse.inventory.length);
   });
 
+
   it('can list its inventory', function(){
-    
+    impulse.addRecordtoInventory(angst);
+    impulse.addRecordtoInventory(tweeter);
+    assert.equal(
+      "Artist: Sparks; Title: Angst In My Pants; Price: £10\nArtist: Sparks; Title: A Tweeter in Woofer's Clothing; Price: £10\n",impulse.displayInventory()
+      );
+
   });
 
-  it('loses inventory item when record sold');
+  it('loses inventory item when record sold', function(){
+    impulse.addRecordtoInventory(angst);
+    impulse.addRecordtoInventory(tweeter);
+    
+    impulse.sell(angst);
 
-  it('increases balance when record sold');
+    assert.equal(1, impulse.inventory.length);
+  });
 
-  it('can report value of inventory');
+  it('increases balance when record sold', function(){
+    impulse.addRecordtoInventory(angst);
+    impulse.addRecordtoInventory(tweeter);
+    
+    impulse.sell(angst);
 
-  it('has a report function giving cash balance and stock value together');
+    assert.equal(10, impulse.balance);
+  });
+
+  it('can report value of inventory', function(){
+    impulse.addRecordtoInventory(angst);
+    impulse.addRecordtoInventory(tweeter);
+    assert.equal(20, impulse.inventoryValue());
+  });
+
+  it('has a report function giving cash balance and stock value together', function(){
+    impulse.balance = 100;
+    impulse.addRecordtoInventory(angst);
+    impulse.addRecordtoInventory(tweeter);
+    
+  });
 })

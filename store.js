@@ -8,6 +8,29 @@ var Store = function(storeName, city){
 Store.prototype = {
   addRecordtoInventory: function(record){
     this.inventory.push(record);
+  },
+
+  displayInventory: function(){
+    var inventoryList = "";
+    this.inventory.forEach(function(record){
+      inventoryList += record.describe() + "\n";
+    });
+    return inventoryList;
+  },
+
+  sell: function(searchRecord){
+    var foundIndex = this.inventory.indexOf(searchRecord);
+    this.balance += this.inventory[foundIndex].price;
+    this.inventory.splice(foundIndex, 1);
+  },
+
+  inventoryValue: function(){
+    var total = 0;
+    this.inventory.forEach(function(record){
+        total += record.price; 
+    });
+    return total;
+
   }
 }
 

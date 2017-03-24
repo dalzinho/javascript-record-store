@@ -26,7 +26,9 @@ describe('store', function(){
     assert.equal(1, impulse.inventory.length);
   });
 
-  it('can list its inventory');
+  it('can list its inventory', function(){
+    
+  });
 
   it('loses inventory item when record sold');
 

@@ -24,6 +24,11 @@ Store.prototype = {
     this.inventory.splice(foundIndex, 1);
   },
 
+  buy: function(record){
+    this.addRecordtoInventory(record);
+    this.balance -= record.price;
+  },
+
   inventoryValue: function(){
     var total = 0;
     this.inventory.forEach(function(record){

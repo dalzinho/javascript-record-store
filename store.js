@@ -32,11 +32,13 @@ Store.prototype = {
   },
 
   inventoryValue: function(){
-    var total = 0;
-    this.inventory.forEach(function(record){
-      total += record.price; 
+    var allPrices = this.inventory.map(function(record){
+      return record.price;
     });
-    return total;
+
+    return allPrices.reduce(function(acc, val){
+      return acc + val;
+    });
   },
 
   totalValue: function(){

@@ -11,20 +11,19 @@ Store.prototype = {
   },
 
   displayInventory: function(){
-    // var inventoryList = [];
-    // this.inventory.forEach(function(record){
-    //   inventoryList.push(record);
-    // });
 
     return this.inventory.map(function(record){
       return record.describe();
     });
   },
 
-  sell: function(searchRecord){
-    var foundIndex = this.inventory.indexOf(searchRecord);
-    this.balance += this.inventory[foundIndex].price;
-    this.inventory.splice(foundIndex, 1);
+  removeItem: function(record){
+    this.inventory.splice(this.inventory.indexOf(record));
+  },
+
+  sell: function(record){
+    this.balance += record.price;
+    this.removeItem();
   },
 
   buy: function(record){

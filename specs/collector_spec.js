@@ -67,7 +67,10 @@ describe('record collector',function(){
     assert.equal(2, ourprice.inventory.length);
   });
 
-  it("can't buy records it can't afford");
+  it("can't buy records it can't afford", function(){
+    collector.buy(manmachine, ourprice);
+    assert.equal("Sorry, you can't afford this", collector.buy(radioactivity, ourprice));
+  });
 
 
 })

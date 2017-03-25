@@ -6,13 +6,19 @@ var Collector = function(){
 Collector.prototype = {
 
   canAfford: function(record){
-    return this.balance > record.price;
+    return this.balance >= record.price;
   },
 
   buy: function(record, store){
-    this.collection.push(record);
-    this.balance -= record.price;
-    store.sell(record);
+    if(this.canAfford(record)){
+
+
+      this.collection.push(record);
+      this.balance -= record.price;
+      store.sell(record);
+    } else {
+      return "Sorry, you can't afford this";
+    }
   },
 
   sell: function(record, store){

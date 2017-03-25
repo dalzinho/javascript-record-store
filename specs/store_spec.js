@@ -32,8 +32,8 @@ describe('store', function(){
   it('can list its inventory', function(){
     impulse.addRecordtoInventory(angst);
     impulse.addRecordtoInventory(tweeter);
-    assert.equal(
-      "Artist: Sparks; Title: Angst In My Pants; Price: £10\nArtist: Sparks; Title: A Tweeter in Woofer's Clothing; Price: £10\n",impulse.displayInventory()
+    var getInventoryOutput = impulse.displayInventory();
+    assert.equal(2, getInventoryOutput.length
       );
 
   });
@@ -66,6 +66,7 @@ describe('store', function(){
     impulse.balance = 100;
     impulse.addRecordtoInventory(angst);
     impulse.addRecordtoInventory(tweeter);
-    
+
+    assert.equal(120, impulse.totalValue());
   });
 })

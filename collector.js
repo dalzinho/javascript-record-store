@@ -11,8 +11,6 @@ Collector.prototype = {
 
   buy: function(record, store){
     if(this.canAfford(record)){
-
-
       this.collection.push(record);
       this.balance -= record.price;
       store.sell(record);

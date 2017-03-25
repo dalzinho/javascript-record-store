@@ -11,11 +11,14 @@ Store.prototype = {
   },
 
   displayInventory: function(){
-    var inventoryList = [];
-    this.inventory.forEach(function(record){
-      inventoryList.push(record);
+    // var inventoryList = [];
+    // this.inventory.forEach(function(record){
+    //   inventoryList.push(record);
+    // });
+
+    return this.inventory.map(function(record){
+      return record.describe();
     });
-    return inventoryList;
   },
 
   sell: function(searchRecord){
@@ -32,7 +35,7 @@ Store.prototype = {
   inventoryValue: function(){
     var total = 0;
     this.inventory.forEach(function(record){
-        total += record.price; 
+      total += record.price; 
     });
     return total;
   },

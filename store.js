@@ -11,7 +11,6 @@ Store.prototype = {
   },
 
   displayInventory: function(){
-
     return this.inventory.map(function(record){
       return record.describe();
     });

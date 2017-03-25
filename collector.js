@@ -5,13 +5,23 @@ var Collector = function(){
 
 Collector.prototype = {
 
+  addRecordToCollection: function(record){
+    this.collection.push(record);
+  },
+
+  removeFromCollection: function(record){
+
+    this.collection.splice(this.collection.indexOf(record));
+  },
+
   canAfford: function(record){
     return this.balance >= record.price;
   },
 
   buy: function(record, store){
+    
     if(this.canAfford(record)){
-      this.collection.push(record);
+      this.addRecordToCollection(record);
       this.balance -= record.price;
       store.sell(record);
     } else {
@@ -20,9 +30,9 @@ Collector.prototype = {
   },
 
   sell: function(record, store){
-    var foundIndex = this.collection.indexOf(record);
-    this.balance += this.collection[foundIndex].price;
-    store.buy(this.collection.splice(foundIndex, 1));
+    this.balance += record.price;
+    store.buy(record);
+    this.removeFromCollection(record);
   }
 };
 

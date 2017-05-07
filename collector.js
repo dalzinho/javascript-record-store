@@ -21,9 +21,11 @@ Collector.prototype = {
   buy: function(record, store){
     
     if(this.canAfford(record)){
+
       this.addRecordToCollection(record);
       this.balance -= record.price;
       store.sell(record);
+
     } else {
       return "Sorry, you can't afford this";
     }
